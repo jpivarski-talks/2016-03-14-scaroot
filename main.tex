@@ -17,6 +17,8 @@
 
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
+\usepackage{listings}
+\usepackage{courier}
 
 \title[2016-03-14-scaroot]{Accessing ROOT and C++ functions in Spark}
 \author{Jim Pivarski}
@@ -24,6 +26,37 @@
 \date{March 14, 2016}
 
 \xdefinecolor{darkblue}{rgb}{0.1,0.1,0.7}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\ttfamily\scriptsize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+\lstdefinelanguage{scala}{
+  morekeywords={abstract,case,catch,class,def,%
+    do,else,extends,false,final,finally,%
+    for,if,implicit,import,match,mixin,%
+    new,null,object,override,package,%
+    private,protected,requires,return,sealed,%
+    super,this,throw,trait,true,try,%
+    type,val,var,while,with,yield},
+  otherkeywords={=>,<-,<\%,<:,>:,\#,@},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[n]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]"""
+}
 
 \begin{document}
 
@@ -64,10 +97,49 @@ Documented with unit tests and examples on the GitHub wiki page (\url{https://gi
 PyROOT dynamically makes proxies to ROOT functions when they're called, so that working in Python is approximately the same as working in CINT/Cling (replacing ``{\tt ->}'' and ``{\tt ::}'' with ``{\tt .}'').
 \end{block}
 
+\vfill
+\begin{uncoverenv}<2->
 \begin{block}{}
 \vspace{-\baselineskip}
-Scala (and Java) are compiled languages, so field names of classes have to be declared in advance. They can define classes on the fly (in a private ClassLoader), but these classes can only be used in the main program if they adhere to a predefined interface.
+Scala (and Java) are compiled languages, so field names of classes have to be declared in advance. They can define classes on the fly (in a private ClassLoader), but these classes can only be used in the main program if they adhere to a predefined interface (abstract class).
 \end{block}
+\end{uncoverenv}
+
+\begin{uncoverenv}<3->
+\begin{block}{}
+\vspace{-\baselineskip}
+We therefore ask the user to define a Scala interface that is satisfied by a C++ class. The C++ class can use any ROOT functions.
+\end{block}
+\end{uncoverenv}
 \end{frame}
+
+\begin{frame}{Example}
+\begin{lstlisting}[language=scala]
+import org.dianahep.scaroot.RootClass
+
+// Scala trait (abstract interface):
+trait ChiSqProb {
+  def apply(chi2: Double, ndof: Int): Double
+}
+
+// C++ class definition that satisfies the interface:
+val chiSqProbClass = RootClass[ChiSqProb]("""
+class ChiSqProb {
+public:
+  double apply(double chi2, int ndof) {
+    return ROOT::Math::chisquared_cdf(chi2, ndof);
+  }
+};
+""")
+
+// Create an instance:
+val chiSqProb = chiSqProbClass.newInstance
+
+// And use it:
+chiSqProb.apply(53.8, 50)
+0.6689797343068249
+\end{lstlisting}
+\end{frame}
+
 
 \end{document}
