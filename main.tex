@@ -160,5 +160,22 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Capabilities}
+\begin{itemize}
+\item The C++ code is not fixed until it is used to create an object. It could be dynamically generated for ``just in time'' flexibility and efficiency.
+\item {\tt RootClass} objects are serializable (as the C++ string!) so that they can be passed to a remote Spark workflow.
+\end{itemize}
+
+\vfill
+\hspace{-0.83 cm} \textcolor{darkblue}{\Large Limitations}
+
+\begin{itemize}
+\item The class must have a zero-argument constructor.
+\item Parameter types and return types must be primitives (numbers, strings, or an opaque {\tt com.sun.jna.Pointer} to C++ data).
+\item (The appropriate version of) ROOT needs to be installed across the Spark cluster, accessible via {\tt LD\_LIBRARY\_PATH} like any other natively compiled program.
+\end{itemize}
+\end{frame}
+
+
 
 \end{document}
