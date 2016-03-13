@@ -223,18 +223,6 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 {"type": "record",
  "name": "Events",
  "fields": [
-   {"name": "GenEvtInfo", "type": {"type": "record",
-    "name": "baconhep::TGenEventInfo",
-    "fields": [
-      {"name": "id_1", "type": "int", "doc": "parton flavor PDG ID"},
-      {"name": "id_2", "type": "int", "doc": "parton flavor PDG ID"},
-      {"name": "x_1", "type": "float", "doc": "parton momentum fraction"},
-      {"name": "x_2", "type": "float", "doc": "parton momentum fraction"},
-      {"name": "scalePDF", "type": "float", "doc": "Q-scale used for PDF evaluation"},
-      {"name": "xs", "type": "float", "doc": "cross section from LHE file"},
-      {"name": "weight", "type": "float", "doc": "generator-level event weight"}
-    ]
-   }},
    {"name": "GenParticle", "type": {"type": "array", "items": {"type": "record",
     "name": "baconhep::TGenParticle",
     "fields": [
