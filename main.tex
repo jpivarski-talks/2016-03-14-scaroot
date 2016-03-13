@@ -118,7 +118,7 @@ We therefore ask the user to define a Scala interface that is satisfied by a C++
 \begin{lstlisting}[language=scala]
 import org.dianahep.scaroot.RootClass
 
-// Scala trait (abstract interface):
+// Scala trait (abstract class with virtual methods):
 trait ChiSqProb {
   def apply(chi2: Double, ndof: Int): Double
 }
@@ -137,7 +137,7 @@ public:
 val chiSqProb = chiSqProbClass.newInstance
 
 // And use it:
-chiSqProb.apply(53.8, 50)
+chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50) because 'apply' is 'operator()'
 0.6689797343068249
 \end{lstlisting}
 \end{frame}
