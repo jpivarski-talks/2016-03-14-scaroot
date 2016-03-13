@@ -57,4 +57,17 @@ Documented with unit tests and examples on the GitHub wiki page (\url{https://gi
 \includegraphics[width=\linewidth]{wiki.png}
 \end{frame}
 
+\begin{frame}{Interface}
+
+\begin{block}{}
+\vspace{-\baselineskip}
+PyROOT dynamically makes proxies to ROOT functions when they're called, so that working in Python is approximately the same as working in CINT/Cling (replacing ``{\tt ->}'' and ``{\tt ::}'' with ``{\tt .}'').
+\end{block}
+
+\begin{block}{}
+\vspace{-\baselineskip}
+Scala (and Java) are compiled languages, so field names of classes have to be declared in advance. They can define classes on the fly (in a private ClassLoader), but these classes can only be used in the main program if they adhere to a predefined interface.
+\end{block}
+\end{frame}
+
 \end{document}
