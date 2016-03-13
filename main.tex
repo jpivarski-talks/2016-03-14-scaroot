@@ -198,5 +198,23 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Status of root2avro}
+\begin{itemize}
+\item All known data types that can be found in TTrees are handled, with a framework that can easily add new ones as they're discovered.
+\item Successfully examined and converted a Bacon-tuple to JSON.
+\item All JSON-writing functions have been supplanted with Avro-writing functions.
+\end{itemize}
+
+\vfill
+\vfill
+\hspace{-0.83 cm} \textcolor{darkblue}{\Large What's next?}
+\begin{enumerate}
+\item Convert Matteo and Christina's Bacon-tuples to Avro files, load into a Spark cluster.
+\item Fix any bugs and segmentation faults along the way.
+\item Stream ROOT data into Scala using two processes (Avro data pipe).
+\item Wrap this up in a Spark InputRDD and/or DataFrame (they're different).
+\item Stream ROOT data into Scala directly into the JVM (via {\tt fmemopen}), still using Avro as the common language.
+\end{enumerate}
+\end{frame}
 
 \end{document}
