@@ -183,6 +183,7 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 \end{itemize}
 
 \vfill
+\vfill
 \hspace{-0.83 cm} \textcolor{darkblue}{\Large Possible extensions}
 \begin{itemize}
 \item Could build a library of common functions (histograms and such) by hand.
@@ -190,11 +191,11 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 \end{itemize}
 
 \vfill
-\hspace{-0.83 cm} \textcolor{darkblue}{\Large Why is this not a bulk data feed (root2avro)?}
+\vfill
+\hspace{-0.83 cm} \textcolor{darkblue}{\Large Why is this not a data feed (root2avro)?}
 \begin{itemize}
-\item hey
-
-
+\item With a primitives-only interface, each complex data structure (CMSSW, ART, Bacon, \ldots) would have to be adapted by hand.
+\item \textcolor{darkblue}{root2avro} examines the structure of data in a TTree and streams that.
 \end{itemize}
 \end{frame}
 
