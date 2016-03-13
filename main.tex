@@ -176,6 +176,27 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Status}
+\begin{itemize}
+\item Works, but has {\it no error checking.} Any mistake causes segmentation fault (will fix).
+\item Has not been tested in Spark yet. (Does anyone have an application they're eager to try?)
+\end{itemize}
+
+\vfill
+\hspace{-0.83 cm} \textcolor{darkblue}{\Large Possible extensions}
+\begin{itemize}
+\item Could build a library of common functions (histograms and such) by hand.
+\itme Could exhaustively search the space of ROOT functions by a graph traversal through {\tt TInterpreter}. This would be a better analogy with PyROOT, but statically compiled.
+\end{itemize}
+
+\vfill
+\hspace{-0.83 cm} \textcolor{darkblue}{\Large Why is this not a bulk data feed (root2avro)?}
+\begin{itemize}
+\item 
+
+
+\end{itemize}
+\end{frame}
 
 
 \end{document}
