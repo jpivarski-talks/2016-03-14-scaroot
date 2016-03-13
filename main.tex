@@ -146,7 +146,7 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 
 \begin{frame}{How it works}
 \begin{itemize}
-\item The use of ``{\tt RootClass[ChiSqProb]}'' in the code invokes a compile-time macro that generates custom hooks for the user's code.
+\item The use of ``{\tt RootClass[ChiSqProb]}'' in the code invokes a compile-time macro that generates custom hooks for the ``{\tt ChiSqProb}'' trait.
 \item These hooks connect to ROOT through JNA (same process, no serialization, just a memory-to-memory copy).
 \item ROOT's {\tt TInterpreter} is invoked to compile the code and give the JVM a direct pointer to the class.
 \item At execution time, the method arguments are copied from Java's memory heap to C++'s, the function is called, and the return values are copied back.
