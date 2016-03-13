@@ -145,17 +145,16 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 
 \begin{frame}{How it works}
 \begin{itemize}
-\item HERE
-
-
-
-
+\item The use of ``{\tt RootClass[ChiSqProb]}'' in the code invokes a compile-time macro that generates custom hooks for the user's code.
+\item These hooks connect to ROOT through JNA (same process, no serialization, just a memory-to-memory copy).
+\item ROOT's {\tt TInterpreter} is invoked to compile the code and give the JVM a direct pointer to the class.
+\item At execution time, the method arguments are copied from Java's memory heap to C++'s, the function is called, and the return values are copied back.
 \end{itemize}
 
 \vfill
 \hspace{-0.83 cm} \textcolor{darkblue}{\Large Who would use it}
 \begin{itemize}
-\item Users writing high-throughput applications on Spark: there are no... HERE
+\item Users doing high-throughput calculations (e.g.\ skimming) on Spark: the round-trip time between Spark and ROOT is minimized.
 \item Or a library of predefined interfaces provided to the user.
 \end{itemize}
 \end{frame}
