@@ -18,10 +18,10 @@
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 
-\title[YYYY-MM-DD-TAG]{TITLE}
+\title[2016-03-14-scaroot]{Accessing ROOT and C++ functions in Spark}
 \author{Jim Pivarski}
 \institute{Princeton University --- DIANA}
-\date{MONTH DAY, YEAR}
+\date{March 14, 2016}
 
 \xdefinecolor{darkblue}{rgb}{0.1,0.1,0.7}
 
@@ -36,8 +36,20 @@
 %  \tableofcontents
 %\end{frame}
 
-\begin{frame}{First page}
-HERE
+\begin{frame}{}
+My work on integrating ROOT and Spark has bifurcated into two projects:
+\begin{description}
+\item[ScaROOT:] Call ROOT functions (and arbitrary C++) from Scala, and therefore Spark.
+\item[root2avro:] Bulk data flow from ROOT files to other formats or live-reading.
+\end{description}
+
+For the last few weeks, \textcolor{darkblue}{root2avro} has been my main focus, but I recently got \textcolor{darkblue}{ScaROOT} into usable shape.
+
+
+
+
+
+
 \end{frame}
 
 \end{document}
