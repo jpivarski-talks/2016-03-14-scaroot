@@ -211,9 +211,8 @@ chiSqProb.apply(53.8, 50)   // or just chiSqProb(53.8, 50)
 \begin{enumerate}
 \item Convert Matteo and Christina's Bacon-tuples to Avro files, load into a Spark cluster.
 \item Fix any bugs and segmentation faults along the way.
-\item Pipe ROOT data into Scala via an external process.
+\item Copy ROOT data directly into the JVM using a technique similar to ScaROOT.
 \item Wrap this up in a Spark InputRDD and/or DataFrame (they're different).
-\item Copy ROOT data into Scala directly into the JVM, still using Avro as the common language.
 \end{enumerate}
 \end{frame}
 
